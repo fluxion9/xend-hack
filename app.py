@@ -8,7 +8,7 @@ db = SQLAlchemy(app)
 # Define the Meter model
 class Meter(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    meter_id = db.Column(db.Integer, unique=True, nullable=False)
+    meter_id = db.Column(db., unique=True, nullable=False)
     voltage = db.Column(db.Float, nullable=False)
     current = db.Column(db.Float, nullable=False)
     energy = db.Column(db.Float, nullable=False)
@@ -28,8 +28,8 @@ def add_meter():
     # Add new meter data to the database
     meter_id = request.args.get('meter_id')
     voltage = request.args.get('voltage')
-    current = request.args.get['current']
-    energy = request.args.get['energy']
+    current = request.args.get('current')
+    energy = request.args.get('energy')
 
     new_meter = Meter(meter_id=meter_id, voltage=voltage, current=current, energy=energy)
     db.session.add(new_meter)
