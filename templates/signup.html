@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=0.5">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <!-- boostrap css set 2 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous">
+
+    <!-- Bootstrap scripts-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.min.js" integrity="sha384-PsUw7Xwds7x08Ew3exXhqzbhuEYmA2xnwc8BuD6SEr+UmEHlX8/MCltYEodzWA4u" crossorigin="anonymous"></script>
+    
+    <!-- boostrap script set 2  -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <!-- Google fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+
+    <!--font awesome pack-->
+    <script src="https://kit.fontawesome.com/2deea720d9.js" crossorigin="anonymous"></script>
+
+    <!--default css--> 
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/Signup-style.css') }}">
+
+    <!--Favorite icon --> 
+    <link rel="shortcut icon" href="{{ url_for('static', filename='images/lady-img.jpg') }}" type="image/x-icon">
+
+    <!--Website title--> 
+    <title>Sign Up @Switch</title>
+</head>
+
+<body>
+<!-- sign up page   -->
+  <section class="top-section">
+    <div class="container-fluid">
+      <div class="row">
+        <!-- form part -->
+        <div class="col-lg-6 top-signup-page left-side">
+            <div class="auth-form-light text-left py-5 px-4 px-sm-5">
+            <div class="brand-logo">
+              <img src="{{ url_for('static', filename='images/switch.jpg') }}" class="logo" alt="logo">
+            </div>
+            <h4>Welcome to the Community.</h4>
+            <h6 class="font-weight-light">Signing up made Easy!</h6>
+            <form class="pt-3" action="/sign-up" method="post">
+              <div class="form-group">
+                <label for="inputUsername" class="form-label">Username</label>
+                <input type="text" class="form-control" id="inputUsername" placeholder="" name="usrname">
+                <div id="emailHelp" class="form-text">Please enter a username of your choice</div>
+              </div>
+
+              <div class="row g-3">
+                <div class="col">
+                <input type="text" class="form-control" placeholder="First name" aria-label="First name" name="fname">
+                </div>
+                <div class="col">
+                <input type="text" class="form-control" placeholder="Last name" aria-label="Last name" name="lname">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Email address</label>
+                  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email">
+                  <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="inputPassword5" class="form-label">Password</label>
+                <input type="password" id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock" name="password">
+                <div id="passwordHelpBlock" class="form-text">Your password must be 8-20 characters long, contain letters and numbers, and must not contain spaces, special characters, or emoji.</div>
+              </div>
+
+              <div class="form-group">
+                    <label for="inputCountry" class="form-label">City</label>
+                    <select id="inputState" class="form-select" name="country">
+                      <option selected>Choose...</option>
+                      <option>Nigeria</option>
+                      <option>United States of America</option>
+                      <option>United Kingdom</option>
+                      <option>India</option>
+                      <option>Germany</option>
+                      <option>Argentina</option>
+                    </select>
+                </div>
+
+                <!-- <div class="form-group">
+                  <div class="row">
+                    <div class="col-md-6 col-sm-6">
+                      <label for="inputCity" class="form-label">City</label>
+                      <input type="text" class="form-control" id="inputCity">
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                      <label for="inputState" class="form-label">State</label>
+                      <select id="inputState" class="form-select">
+                        <option selected>Choose...</option>
+                        <option>...</option>
+                      </select>
+                    </div>
+                    <div class="col-md-2 col-sm-6">
+                      <label for="inputZip" class="form-label">Zip</label>
+                      <input type="text" class="form-control" id="inputZip">
+                    </div>
+                    <div class="col-md-12 col-sm-6">
+                      <div class="form-group">
+                        <label for="inputAmountofMeter" class="form-label">Meter details</label>
+                        <input type="text" class="form-control" id="inputAmountofMeter" placeholder="">
+                        <div id="emailHelp" class="form-text">How many meters were installed ?</div>
+                      </div>
+                    </div>
+                  </div>
+                </div> -->
+              </div>
+
+              <div class="col-12">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="gridCheck">
+                  <label class="form-check-label" for="gridCheck">
+                    I agree to all Terms & Conditions
+                  </label>
+                </div>
+              </div>
+
+              <div class="col-12">
+                <input type="submit" class="btn btn-primary btn-block btn-danger btn-lg">Sign Up</input>
+              </div>
+
+              <div class="col-12">
+                Already have an account? <a href="/login" class="text-primary">Login</a>
+              </div>
+               <p class="Copyright">copyright © 2021  All rights reserved.</p>
+            </form>
+          </div>
+          <div class="col-lg-6 right-side">
+            <!-- background image -->
+            <img src="{{ url_for('static', filename='images/pexels-sanaan-mazhar-3052361.jpg') }}" class="bg-image" alt="">
+          </div>
+        </div>    
+      </div>
+
+    </div>
+  </section>
+
+</body>
+</html>

@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Switch</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="vendors/feather/feather.css">
+    <link rel="stylesheet" href="vendors/ti-icons/css/themify-icons.css">
+    <link rel="stylesheet" href="vendors/css/vendor.bundle.base.css">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <link rel="stylesheet" href="vendors/owl-carousel-2/owl.carousel.min.css">
+    <link rel="stylesheet" href="vendors/owl-carousel-2/owl.theme.default.min.css">
+    
+    <link rel="stylesheet" href="vendors/datatables.net-bs4/dataTables.bootstrap4.css">
+    <link rel="stylesheet" href="vendors/ti-icons/css/themify-icons.css">
+    <link rel="stylesheet" type="text/css" href="js/select.dataTables.min.css">
+    <link rel="stylesheet" href="vendors/jvectormap/jquery-jvectormap.css">
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- endinject -->
+    <link rel="shortcut icon" href="images/Switch.jpg" />
+  </head>
+  <body>
+    <div class="container-scroller">
+      <!-- partial:partials/_navbar.html -->
+      <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+        <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+          <a class="navbar-brand brand-logo mr-5" href="index.html"><img src="images/Switch.jpg" class="mr-2" alt="logo"/></a>
+          <a class="navbar-brand brand-logo-mini" href="index.html"><img src="images/Switch.jpg" alt="logo"/></a>
+        </div>
+        <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+          <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+            <span class="icon-menu"></span>
+          </button>
+          <ul class="navbar-nav mr-lg-2">
+            <li class="nav-item nav-search d-none d-lg-block">
+              <div class="input-group">
+                <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
+                  <span class="input-group-text" id="search">
+                    <i class="icon-search"></i>
+                  </span>
+                </div>
+                <input type="text" class="form-control" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search">
+              </div>
+            </li>
+          </ul>
+          <ul class="navbar-nav navbar-nav-right">
+            <li class="nav-item dropdown">
+              <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-toggle="dropdown">
+                <i class="icon-bell mx-0"></i>
+                <span class="count"></span>
+              </a>
+              <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
+                <p class="mb-0 font-weight-normal float-left dropdown-header">Notifications</p>
+                <!-- <a class="dropdown-item preview-item">
+                  <div class="preview-thumbnail">
+                    <div class="preview-icon bg-success">
+                      <i class="ti-info-alt mx-0"></i>
+                    </div>
+                  </div>
+                  <!-- <div class="preview-item-content">
+                    <h6 class="preview-subject font-weight-normal">Application Error</h6>
+                    <p class="font-weight-light small-text mb-0 text-muted">
+                      Just now
+                    </p>
+                  </div>
+                </a> -->
+                <a class="dropdown-item preview-item">
+                  <div class="preview-thumbnail">
+                    <div class="preview-icon bg-warning">
+                      <i class="ti-settings mx-0"></i>
+                    </div>
+                  </div>
+                  <div class="preview-item-content">
+                    <h6 class="preview-subject font-weight-normal">Settings</h6>
+                    <p class="font-weight-light small-text mb-0 text-muted">
+                      Private message
+                    </p>
+                  </div>
+                </a>
+                <!-- <a class="dropdown-item preview-item">
+                  <div class="preview-thumbnail">
+                    <div class="preview-icon bg-info">
+                      <i class="ti-user mx-0"></i>
+                    </div>
+                  </div>
+                  <div class="preview-item-content">
+                    <h6 class="preview-subject font-weight-normal">New user registration</h6>
+                    <p class="font-weight-light small-text mb-0 text-muted">
+                      2 days ago
+                    </p>
+                  </div> -->
+                </a>
+              </div>
+            </li>
+            <li class="nav-item nav-profile dropdown">
+              <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
+                <img src="images/demo/pexels-anna-shvets-3683107.jpg" alt="profile"/>
+              </a>
+              <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
+                <a class="dropdown-item" href="updateUserProfile.html">
+                  <i class="ti-settings text-primary"></i>
+                  User Profile
+                </a>
+                <!-- <a class="dropdown-item" href="livemeter.html">
+                  <i class="ti-light-bulb text-primary"></i>
+                  View Live Meters
+                </a> -->
+                <a class="dropdown-item" href="login.html">
+                  <i class="ti-power-off text-primary"></i>
+                  Logout
+                </a>
+              </div>
+            </li>
+            <li class="nav-item nav-settings d-none d-lg-flex">
+              <a class="nav-link" href="payments.html">
+                <!-- {{ user }} -->
+                Stanley
+              </a>
+            </li>
+          </ul>
+          <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+            <span class="icon-menu"></span>
+          </button>
+        </div>
+      </nav>
+        <!-- partial -->
+      <div class="container-fluid page-body-wrapper">
+        <!-- partial:partials/_settings-panel.html -->
+        <div class="theme-setting-wrapper">
+          <div id="settings-trigger"><i class="ti-settings"></i></div>
+          <div id="theme-settings" class="settings-panel">
+            <i class="settings-close ti-close"></i>
+            <p class="settings-heading">Account Shortcuts</p>
+            <ul>
+              <li>
+                <a class="nav-item" href="updateUserProfile.html">
+                  <i class="ti-settings text-primary"></i>
+                  User Profile                            
+                </a>
+              </li>
+              <!-- <li>
+                <a class="nav-item" href="livemeter.html">
+                  <i class="ti-light-bulb text-primary"></i>
+                  View Live Meters
+                </a>
+              </li> -->
+              <li>
+                <a class="nav-item" href="login.html">
+                  <i class="ti-power-off text-primary"></i>
+                  Logout
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <!-- partial -->
+        <!-- partial:partials/_sidebar.html -->
+        <nav class="sidebar sidebar-offcanvas" id="sidebar">
+          <ul class="nav">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">
+                <i class="icon-grid menu-icon"></i>
+                <span class="menu-title">Dashboard</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="payments.html">
+                <i class="icon-globe menu-icon"></i>
+                <span class="menu-title">Payments</span>
+              </a>
+            </li>
+            <!-- <li class="nav-item">
+              <a class="nav-link disabled" href="livemeter.html">
+                <i class="icon-bar-graph menu-icon"></i>
+                <span class="menu-title">LiveMeters</span>
+              </a>
+            </li> -->
+            <li class="nav-item">
+              <a class="nav-link" href="userprofile.html">
+                <i class="icon-head menu-icon"></i>
+                <span class="menu-title">User Profile</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="https://wa.me/message/UIFVQF7CYHTAK1">
+                <i class="icon-mail menu-icon"></i>
+                <span class="menu-title">Contact Us Now!</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <!-- partial -->
+        <div class="main-panel">
+          <div class="content-wrapper">
+            <div class="row">
+              <div class="col-md-12 grid-margin">
+                <div class="row">
+                  <div class="col-12 col-xl-8 mb-4 mb-xl-0">
+                    <h3 class="font-weight-bold">Welcome User </h3>
+                    <h6 class="font-weight-normal mb-0">All systems are running smoothly!</h6>
+                  </div>
+                  <div class="col-12 col-xl-4">
+                  <div class="justify-content-end d-flex">
+                    <div class="dropdown flex-md-grow-1 flex-xl-grow-0">
+                      <button class="btn btn-sm btn-success bgwhite " type="button"  data-toggle="button" aria-haspopup="false" aria-expanded="false" id="meterButton" onclick="meterState()">
+                        <i class="mdi mdi-calendar"></i> METERS ON
+                      </button>
+                      <button class="btn btn-sm btn-success bgwhite " type="button"  data-toggle="dropdown" aria-haspopup="false" aria-expanded="false">
+                        <i class="mdi mdi-calendar"></i> Account Active
+                      </button>
+                    </div>
+                  </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 grid-margin stretch-card">
+                <div class="card data-icon-card-primary">
+                  <div class="card-body">
+                    <p class="card-title text-white">Available Credit Balance</p>
+                    <p class="fs-30 mb-2 mt-4">10,000</p>
+                    <!-- <p class="text-white font-weight-500 mb-0">Approciatemently 4 days to next recharge</p> -->
+                  </div>
+                </div>
+              </div>
+              
+              <div class="col-md-6 grid-margin transparent">
+                <div class="row">
+                <div class="col-md-6 mb-4 mb-lg-0 stretch-card transparent" id="recharge-button1">
+                    <div class="card">
+                      <div class="card-body">
+                        <p class="card-title text-dark">Top up Your METER Now</p>
+                        <a type="button" class="btn btn-primary btn-rounded btn-fw open-button" href="#" id="show">RECHARGE NOW</a>
+                        <p></p>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="col-md-6 stretch-card transparent" id="customer-care">
+                    <div class="card card-light-danger">
+                      <div class="card-body">
+                        <p class="mb-4 text-white">Customer care line</p>
+                        <p class="fs-30 mb-2 text-white">010435672</p>
+                        <p class="text-white">Available 24/7 a week</p>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- <div class="col-md-12 stretch-card grid-margin grid-margin-md-0">
+                    <div class="card data-icon-card-primary">
+                      <div class="card-body">
+                        <p class="card-title text-white">Number of Meetings</p>                      
+                        <div class="row">
+                          <div class="col-8 text-white">
+                            <h3>34040</h3>
+                            <p class="text-white font-weight-500 mb-0">The total number of sessions within the date range.It is calculated as the sum . </p>
+                          </div>
+                          <div class="col-4 background-icon">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div> -->
+                </div>
+                <!-- <div id="payment-form" class="form-popup">
+                  <div class="card">
+                    <div class="card-body">
+                      <h4 class="card-title">Select Amount</h4>
+                      <p class="card-description">
+                        Recharge your meter fast and easy.
+                      </p>
+                      <form class="forms-sample">
+                        <div class="form-group">
+                          <tbody>
+                            <td><button type="submit" class="btn btn btn-primary btn-rounded btn-fw">1,0000</button></td>
+                            <td><button type="submit" class="btn btn btn-primary btn-rounded btn-fw">3,000</button></td>
+                            <td><button type="submit" class="btn btn btn-primary btn-rounded btn-fw">5,000</button></td>
+                            <td><button type="submit" class="btn btn btn-primary btn-rounded btn-fw">10,000</button></td>
+                          </tbody>
+                        </div>
+                        
+                        <tbody>
+                          <td><button type="submit" class="btn btn btn-primary btn-rounded btn-fw">25,000</button></td>
+                          <button type="button" class="btn btn btn-primary btn-rounded btn-fw cancel" onclick="$closeForm()">Close</button></form>
+                        </tbody>
+                      </form>
+                    </div>
+                  </div>
+                </div> -->
+                <!-- <div class="row">
+                  <div class="col-md-6 mb-4 mb-lg-0 stretch-card transparent">
+                    <div class="card">
+                      <div class="card-body">
+                        <p class="mb-4">Top up Your METER Now</p>
+                        <p type="button" class="btn btn-primary btn-rounded btn-fw" href="payments.html">RECHARGE NOW</p>
+                        <p></p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6 stretch-card transparent">
+                    <div class="card card-light-danger">
+                      <div class="card-body">
+                        <p class="mb-4">Customer care line</p>
+                        <p class="fs-30 mb-2">08064501332</p>
+                        <p>open 24 hrs / 7 days a week</p>
+                      </div>
+                    </div>
+                  </div>
+                </div> -->
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-5 col-sm-12 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <p class="card-title">Transactions</p>
+                    <div class="table-responsive">
+                      <table class="table table-striped table-borderless">
+                        <thead>
+                          <tr>
+                            <th>Amount</th>
+                            <th>Time</th>
+                            <th>Payment status</th>
+                          </tr>  
+                        </thead>
+                        <!-- {% for transaction in transactions %} -->
+                          <td>
+                            2500
+                          </td>
+                          <td>
+                            12-04-2024
+                          </td>
+                          <td>
+                            <a  class="btn btn btn-primary btn-rounded btn-fw" href="{{ transaction.confirmation_url}}">Confirm</a>
+                          </td>
+                        <!-- {% endfor %} -->
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-7 col-sm-12 grid-margin stretch-card">
+                  <div class="card">
+                    <div class="card-body">
+                      <p class="card-title">My Meters</p>
+                      <div class="table-responsive">
+                        <table class="table table-striped table-borderless">
+                          <thead>
+                            <tr>
+                              <th>ID</th>
+                              <th>Status</th>
+                              <th>Address</th>
+                            </tr>  
+                          </thead>
+                          <!-- {% for meter in meters %} -->
+                            <td>
+                              2ed12034324fded223
+                              <!-- {{ meter.uuid }} -->
+                            </td>
+                            <td>
+                              ACTIVE
+                              <!-- {{ meter.is.active }} -->
+                            </td>
+                            <td>
+                              UNN
+                              <!-- {{ meter.site.address}} -->
+                            </td>
+                          <!-- {% endfor %} -->
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                  <div class="col-lg-12 grid-margin stretch-card">
+                    <div class="card">
+                      <div class="card-body">
+                        <h4 class="card-title">More from Switch</h4>
+                        <div class="owl-carousel owl-theme full-width" id="carouselExampleDark">
+                          <div class="item">
+                            <div class="card text-white">
+                              <img class="card-img" src="../../../images/Switch.jpgProfileLogoforpost.png" alt="Card image">
+                              <div class="card-img-overlay d-flex">
+                                <div class="mt-auto text-center w-100">
+                                  <h3>How Switch works.</h3>
+                                  <a class="card-text mb-4 font-weight-normal btn btn btn-primary btn-rounded btn-fw" href="https://www.linkedin.com/company/whynotSwitch.jpg/" > Learn more about us and what we have for you.</a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="item">
+                            <div class="card text-white" >
+                              <img class="card-img" src="images/batteryforpost4.jpg" alt="Card image">
+                              <div class="card-img-overlay d-flex">
+                                <div class="mt-auto text-center w-100">
+                                  <h3>WE Switch</h3>
+                                  <a class="card-text mb-4 font-weight-normal btn btn btn-primary btn-rounded btn-fw" href="https://www.linkedin.com/pulse/we-Switch.jpged-whynotSwitch.jpg/?trackingId=%2BURYE1WzlAhC%2F98%2FDwdMsw%3D%3D">For batteries are the souls of our panels, we Switch.jpged...</a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="item">
+                            <div class="card text-white">
+                              <img class="card-img" src="images/forpost1.jpg" alt="Card image">
+                              <div class="card-img-overlay d-flex">
+                                <div class="mt-auto text-center w-100">
+                                  <h3>Nigeria: Rethinking Electrification</h3>
+                                  <a class="card-text mb-4 font-weight-normalbtn btn btn-primary btn-rounded btn-fw" href="https://www.linkedin.com/pulse/nigeria-rethinking-electrification-ifeanyi-christwin-jr-/">Have you ever wondered why Nigeria's energy and electricity situation never seems to improve?</a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                  <div class="col-12">
+                    <footer class="footer">
+                      <div class="d-sm-flex justify-content-center justify-content-sm-between">
+                        <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2021 Switch.jpg. All rights reserved.</span>
+                        <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i class="ti-heart text-danger ml-1"></i></span>
+                      </div>
+                    </footer>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- partial:partials/_footer.html
+          <!-- partial -->
+        </div>
+        <!-- main-panel ends -->
+      </div>
+      <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+    <script src="../../../vendors/js/vendor.bundle.base.js"></script>
+    <script src="../../../vendors/form.js"></script>
+    <!-- endinject -->
+    <script src="../../../vendors/owl-carousel-2/owl.carousel.min.js"></script>
+    <!-- Plugin js for this page -->
+  <!-- plugins:js -->
+    <script src="../../../vendors/jvectormap/jquery-jvectormap.min.js"></script>
+    <script src="../../../vendors/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+    <script src="../../../js/maps.js"></script>
+    <!-- End plugin js for this page -->
+    <!-- inject:js -->
+    <script src="../../../js/off-canvas.js"></script>
+    <script src="../../../js/hoverable-collapse.js"></script>
+    <script src="../../../js/template.js"></script>
+    <script src="../../../js/settings.js"></script>
+    <script src="../../../js/todolist.js"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page-->
+    <script src="../../../js/dashboard.js"></script>
+    <script src="../../../js/owl-carousel.js"></script>
+    <script src="../../../js/Chart.roundedBarCharts.js"></script>
+    <script src="../../../js/select2.js"></script>
+    <!-- End custom js for this page-->
+    <!-- //popup js -->
+    <script src="../../../vendors/sweetalert/sweetalert.min.js"></script>
+    <script src="../../../vendors/jquery.avgrund/jquery.avgrund.min.js"></script>
+    <script src="../../../js/alerts.js"></script>
+    <script src="../../../js/avgrund.js"></script>
+    <!-- meter controls -->
+    <script src="../../../js/meter.js"></script>
+  </body>
+</html>

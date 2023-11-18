@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Switch Users</title>
+  <!-- plugins:css -->
+  <link rel="stylesheet" href="vendors/feather/feather.css">
+  <link rel="stylesheet" href="vendors/ti-icons/css/themify-icons.css">
+  <link rel="stylesheet" href="vendors/css/vendor.bundle.base.css">
+  <!-- endinject -->
+  <!-- css ffor drag and drop -->
+  <link rel="stylesheet" href="vendors/dragula/dragula.min.css">
+  <!-- Plugin css for this page -->
+  <link rel="stylesheet" href="vendors/datatables.net-bs4/dataTables.bootstrap4.css">
+  <link rel="stylesheet" href="vendors/ti-icons/css/themify-icons.css">
+  <link rel="stylesheet" type="text/css" href="js/select.dataTables.min.css">
+  <!-- End plugin css for this page -->
+  <!-- inject:css -->
+  <link rel="stylesheet" href="css/style.css">
+  <!-- endinject -->
+  <link rel="shortcut icon" href="images/switch.jpg" />
+</head>
+<body>
+  <div class="container-scroller">
+    <!-- partial:partials/_navbar.html -->
+    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+      <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+        <a class="navbar-brand brand-logo mr-5" href="index.html"><img src="images/switch.jpg" class="mr-2" alt="logo"/></a>
+        <a class="navbar-brand brand-logo-mini" href="index.html"><img src="images/switch.jpg" alt="logo"/></a>
+      </div>
+      <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+        <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+          <span class="icon-menu"></span>
+        </button>
+        <ul class="navbar-nav mr-lg-2">
+          <li class="nav-item nav-search d-none d-lg-block">
+            <div class="input-group">
+              <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
+                <span class="input-group-text" id="search">
+                  <i class="icon-search"></i>
+                </span>
+              </div>
+              <input type="text" class="form-control" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search">
+            </div>
+          </li>
+        </ul>
+        <ul class="navbar-nav navbar-nav-right">
+          <li class="nav-item dropdown">
+            <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-toggle="dropdown">
+              <i class="icon-bell mx-0"></i>
+              <span class="count"></span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
+              <p class="mb-0 font-weight-normal float-left dropdown-header">Notifications</p>
+              <a class="dropdown-item preview-item">
+                <div class="preview-thumbnail">
+                  <div class="preview-icon bg-success">
+                    <i class="ti-info-alt mx-0"></i>
+                  </div>
+                </div>
+                <div class="preview-item-content">
+                  <h6 class="preview-subject font-weight-normal">Application Error</h6>
+                  <p class="font-weight-light small-text mb-0 text-muted">
+                    Just now
+                  </p>
+                </div>
+              </a>
+              <a class="dropdown-item preview-item">
+                <div class="preview-thumbnail">
+                  <div class="preview-icon bg-warning">
+                    <i class="ti-settings mx-0"></i>
+                  </div>
+                </div>
+                <div class="preview-item-content">
+                  <h6 class="preview-subject font-weight-normal">Settings</h6>
+                  <p class="font-weight-light small-text mb-0 text-muted">
+                    Private message
+                  </p>
+                </div>
+              </a>
+              <a class="dropdown-item preview-item">
+                <div class="preview-thumbnail">
+                  <div class="preview-icon bg-info">
+                    <i class="ti-user mx-0"></i>
+                  </div>
+                </div>
+                <div class="preview-item-content">
+                  <h6 class="preview-subject font-weight-normal">New user registration</h6>
+                  <p class="font-weight-light small-text mb-0 text-muted">
+                    2 days ago
+                  </p>
+                </div>
+              </a>
+            </div>
+          </li>
+          <li class="nav-item nav-profile dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
+              <img src="images/demo/pexels-anna-shvets-3683107.jpg" alt="profile"/>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
+              <a class="dropdown-item" href="updateUserProfile.html">
+                <i class="ti-settings text-primary"></i>
+                User Profile
+              </a>
+              <a class="dropdown-item" href="livemeter.html">
+                <i class="ti-light-bulb text-primary"></i>
+                View Live Meters
+              </a>
+              <a class="dropdown-item" href="login.html">
+                <i class="ti-power-off text-primary"></i>
+                Logout
+              </a>
+            </div>
+          </li>
+          <li class="nav-item nav-settings d-none d-lg-flex">
+            <a class="nav-link" href="payments.html">
+              USER ID : 010100110030
+            </a>
+          </li>
+        </ul>
+        <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+          <span class="icon-menu"></span>
+        </button>
+      </div>
+    </nav>
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+      <!-- partial:partials/_settings-panel.html -->
+      <div class="theme-setting-wrapper">
+        <div id="settings-trigger"><i class="ti-settings"></i></div>
+        <div id="theme-settings" class="settings-panel">
+          <i class="settings-close ti-close"></i>
+          <p class="settings-heading">Account Shortcuts</p>
+          <ul>
+            <li>
+              <a class="nav-item" href="updateUserProfile.html">
+                <i class="ti-settings text-primary"></i>
+                User Profile                            
+              </a>
+            </li>
+            <li>
+              <a class="nav-item" href="livemeter.html">
+                <i class="ti-light-bulb text-primary"></i>
+                View Live Meters
+              </a>
+            </li>
+            <li>
+              <a class="nav-item" href="login.html">
+                <i class="ti-power-off text-primary"></i>
+                Logout
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!-- partial -->
+      <!-- partial:partials/_sidebar.html -->
+      <nav class="sidebar sidebar-offcanvas" id="sidebar">
+        <ul class="nav">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">
+              <i class="icon-grid menu-icon"></i>
+              <span class="menu-title">Dashboard</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="topup.html">
+              <i class="icon-layout menu-icon"></i>
+              <span class="menu-title">Top Up</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="payments.html">
+              <i class="icon-globe menu-icon"></i>
+              <span class="menu-title">Payments</span>
+            </a>
+          </li>
+           <li class="nav-item">
+            <a class="nav-link" href="livemeter.html">
+              <i class="icon-bar-graph menu-icon"></i>
+              <span class="menu-title">LiveMeters</span>
+            </a>
+          </li>
+           <li class="nav-item">
+            <a class="nav-link" href="updateUserProfile.html">
+              <i class="icon-head menu-icon"></i>
+              <span class="menu-title">User Profile</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <!-- partial -->
+      <div class="main-panel">
+        <div class="content-wrapper">
+          <div class="row">
+            <div class="col-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">LiveMeter Page</h4>
+                  <div class="mb-4" id="g1"></div>
+                  <div class="row">
+                   <div class="col-md-6">
+                     <p class="card-description">Drag and drop your meters between LiveMeters and Offline to disable or enable them</p>
+                   </div>
+                   <div class="col-md-6">
+                     <a type="button" href="addMeters.html" class="btn btn-primary col- me-2">Add New Meter</a>
+                   </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6 h-100">
+                      <div class="bg-primary p-4 rounded">
+                        <h6 class="card-title text-white">LiveMeters</h6>
+                        <div id="profile-list-left" class="py-2">
+                          <div class="card rounded mb-2">
+                            <div class="card-body p-3">
+                              <div class="media">
+                                <div class="media-body">
+                                  <h6 class="mb-1">Location Title: My Village home</h6>
+                                  <p class="mb-0 text-muted">
+                                    Meter No: 010152520554                   
+                                  </p>
+                                  <p>
+                                    Location Address: No 17 Jc Nwobodo Ihe Nsukka, Enugu, Enugu State, Nigeria.     
+                                  </p>
+                                </div>                              
+                              </div>
+                            </div>
+                          </div>
+                          <div class="card rounded mb-2">
+                            <div class="card-body p-3">
+                              <div class="media">
+                                <div class="media-body">
+                                  <h6 class="mb-1">Location Title: Mama's Shop</h6>
+                                  <p class="mb-0 text-muted">
+                                    Meter No: 010152520554                         
+                                  </p>         
+                                  <p>
+                                    Location Address: No 17 Jc Nwobodo Ihe Nsukka, Enugu, Enugu State, Nigeria.     
+                                  </p>                    
+                                </div>                              
+                              </div>
+                            </div>
+                          </div>
+                          <div class="card rounded mb-2">
+                            <div class="card-body p-3">
+                              <div class="media">
+                                <div class="media-body">
+                                  <h6 class="mb-1">Location Title: Mama's House</h6>
+                                  <p class="mb-0 text-muted">
+                                    Meter No: 010152520554                         
+                                  </p>
+                                  <p>
+                                    Location Address: No 17 Jc Nwobodo Ihe Nsukka, Enugu, Enugu State, Nigeria.     
+                                  </p>
+                                </div>                              
+                              </div>
+                            </div>
+                          </div>
+                          <div class="card rounded mb-2">
+                            <div class="card-body p-3">
+                              <div class="media">
+                                <div class="media-body">
+                                   <h6 class="mb-1">Location Title: My Town House</h6>
+                                  <p class="mb-0 text-muted">
+                                    Meter No: 010152520554                         
+                                  </p>
+                                  <p>
+                                    Location Address: No 17 Jc Nwobodo Ihe Nsukka, Enugu, Enugu State, Nigeria.     
+                                  </p>
+                                </div>                              
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6 h-100">
+                      <div class="bg-primary p-4 rounded">
+                        <h6 class="card-title text-white">Offline</h6>
+                        <div id="profile-list-right" class="py-2">
+                          <div class="card rounded mb-2">
+                            <div class="card-body p-3">
+                              <div class="media">
+                                <div class="media-body">
+                                  <h6 class="mb-1">Location Title: My Lagos House</h6>
+                                  <p class="mb-0 text-muted">
+                                    Meter No: 010152520554                         
+                                  </p>
+                                  <p>
+                                    Location Address: No 17 Jc Nwobodo Ihe Nsukka, Enugu, Enugu State, Nigeria.     
+                                  </p>
+                                </div>                              
+                              </div>
+                            </div>
+                          </div>
+                          <div class="card rounded mb-2">
+                            <div class="card-body p-3">
+                              <div class="media">
+                                <div class="media-body">
+                                  <h6 class="mb-1">Location Title: My Enugu house</h6>
+                                  <p class="mb-0 text-muted">
+                                    Meter No: 010152520554                         
+                                  </p>
+                                  <p>
+                                    Location Address: No 17 Jc Nwobodo Ihe Nsukka, Enugu, Enugu State, Nigeria.     
+                                  </p>
+                                </div>                              
+                              </div>
+                            </div>
+                          </div>
+                          <div class="card rounded mb-2">
+                            <div class="card-body p-3">
+                              <div class="media">
+                                <div class="media-body">
+                                  <h6 class="mb-1">Location Title: My Office</h6>
+                                  <p class="mb-0 text-muted">
+                                    Meter No: 010152520554                         
+                                  </p>
+                                  <p>
+                                    Location Address: No 17 Jc Nwobodo Ihe Nsukka, Enugu, Enugu State, Nigeria.     
+                                  </p>
+                                </div>                              
+                              </div>
+                            </div>
+                          </div>
+                          <div class="card rounded mb-2">
+                            <div class="card-body p-3">
+                              <div class="media">
+                                <div class="media-body">
+                                  <h6 class="mb-1">Location Title: My Abuja Apartment</h6>
+                                  <p class="mb-0 text-muted">
+                                    Meter No: 010152520554                         
+                                  </p>
+                                  <p>
+                                    Location Address: No 17 Jc Nwobodo Ihe Nsukka, Enugu, Enugu State, Nigeria.     
+                                  </p>
+                                </div>                              
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- content-wrapper ends -->
+        <!-- partial:../../partials/_footer.html -->
+        <footer class="footer">
+          <div class="d-sm-flex justify-content-center justify-content-sm-between">
+            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2021.All rights reserved.</span>
+            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i class="ti-heart text-danger ms-1"></i></span>
+          </div>
+        </footer>
+        <!-- partial -->
+      </div>
+      <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div>
+  <!-- container-scroller -->
+  <!-- plugins:js -->
+  <script src="vendors/js/vendor.bundle.base.js"></script>
+  <!-- endinject -->
+  <!-- Plugin js for this page -->
+  <!-- js for the drag and drop -->
+  <script src="vendors/dragula/dragula.min.js"></script>
+  <script src="js/dragula.js"></script>
+  <!-- js for the live random gage -->
+  <script src="vendors/justgage/raphael-2.1.4.min.js"></script>
+  <script src="vendors/justgage/justgage.js"></script>
+  <script src="js/just-gage.js"></script>
+  <!-- End plugin js for this page -->
+  <!-- inject:js -->
+  <script src="js/off-canvas.js"></script>
+  <script src="js/hoverable-collapse.js"></script>
+  <script src="js/template.js"></script>
+  <script src="js/settings.js"></script>
+  <script src="js/todolist.js"></script>
+  <!-- endinject -->
+  <!-- Custom js for this page-->
+  <!-- End custom js for this page-->
+</body>
+
+
+<!-- Mirrored from www.bootstrapdash.com/demo/skydash/template/demo/vertical-icon-menu/pages/samples/blank-page.html by HTTrack Website Copier/3.x [XR&CO'2017], Fri, 20 Aug 2021 18:39:10 GMT -->
+</html>

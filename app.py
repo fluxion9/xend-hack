@@ -1,11 +1,14 @@
-from flask import Flask, make_response, render_template, request, redirect, url_for
+from flask import Flask, make_response, render_template, request, redirect, url_for, session
 from flask_sqlalchemy import SQLAlchemy
+from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
 from json import dumps
 
 Tariff = 100
 
 app = Flask(__name__, template_folder='templates')
+
+app.config['SECRET_KEY'] = 'temporal_secret_key'
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///Records.db'  # Use SQLite for simplicity
 db = SQLAlchemy(app)
@@ -15,6 +18,9 @@ db0 = SQLAlchemy(app)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///Registry.db'
 db1 = SQLAlchemy(app)
+
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///Users.db'
+db2 = SQLAlchemy(app)
 
 class Records(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
@@ -38,17 +44,101 @@ class Registry(db1.Model):
     address = db1.Column(db.String(255), nullable=False)
     date_created = db1.Column(db.DateTime, default=datetime.utcnow())
 
+class Users(db2.Model):
+    id = db2.Column(db.Integer, autoincrement=True)
+    username = db2.Column(db.String(50), primary_key=True, unique=True, nullable=False)
+    firstname = db2.Column(db.String(50), nullable=False)
+    lastname = db2.Column(db.String(50), nullable=False)
+    email = db2.Column(db.String(120), unique=True, nullable=False)
+    password_hash = db2.Column(db.String(128), nullable=False)
+    country = db2.Column(db.String(50), nullable=False)
+
 # Create the database tables within the application context
 with app.app_context():
     db.create_all()
     db0.create_all()
     db1.create_all()
+    db2.create_all()
 
 @app.route('/')
 def index():
     # Display existing meter data
     records = Records.query.all()
     return render_template('/index.html', meters=records)
+
+@app.route('/login', methods=['POST', 'GET'])
+def login():
+    if request.method == 'POST':
+        print('post request')
+        username = request.form['username']
+        password = request.form['password']
+        print(username, password)
+        password_hash = generate_password_hash(password, method='sha256')
+        print(username, password_hash)
+        if not Users.query.get(username):
+            print('User not found')
+            return redirect(url_for('sign_up'))
+        else:
+            user = Users.query.get(username)
+            if check_password_hash(user.password_hash, password_hash):
+                session['username'] = username
+                session['email'] = user.email
+                session['name'] = user.firstname
+                session['surname'] = user.lastname
+                return redirect(url_for('userprofile'))
+            else:
+                print('passwords dont match')
+                return render_template('/login.html')
+    return render_template('/login.html')
+
+@app.route('/logout')
+def logout():
+    session.pop('username', None)
+    session.pop('name', None)
+    session.pop('email', None)
+    session.pop('surname', None)
+    return redirect(url_for('login', username='guest'))
+
+@app.route('/user-profile')
+def userprofile():
+    username = session.get('username')
+    email = session.get('email')
+    name = session.get('name')
+    surname = session.get('surname')
+    if username and email and name and surname:
+        return render_template('/userprofile.html', username=username, email=email, name=name, surname=surname)
+    else:
+        return redirect(url_for('login', username='guest'))
+
+@app.route('/sign-up', methods=['POST', 'GET'])
+def sign_up():
+    if request.method == 'POST':
+        username = request.form['usrname']
+        fname = request.form['fname']
+        lname = request.form['lname']
+        email = request.form['email']
+        password = request.form['password']
+        country = request.form['country']
+
+        if Users.query.get(username):
+            print('user exists')
+            return redirect(url_for('sign_up'))
+        else:
+            print(username, password)
+            password_hash = generate_password_hash(password, method='sha256')
+            print(username, password_hash)
+
+            new_user = Users(username=username, email=email, password_hash=password_hash, firstname=fname, lastname=lname, country=country)
+            db2.session.add(new_user)
+            db2.session.commit()
+
+            session['username'] = new_user.username
+            session['email'] = new_user.email
+            session['name'] = new_user.firstname
+            session['surname'] = new_user.lastname
+
+            return redirect(url_for('userprofile'))
+    return render_template('signup.html')
     
 @app.route('/api/create-meter/', methods=['POST', 'GET'])
 def create_meter():

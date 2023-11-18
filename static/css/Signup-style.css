@@ -1,0 +1,36 @@
+body{
+    text-align: center;
+}
+.logo{
+    width: 40%;
+    text-align: center;
+    margin-bottom: 13px;
+}
+.left-side{
+    height: 100%;
+    padding: 0;
+    background-color: #FFFDEF;
+}
+.right-side{
+    height: 100%;
+    padding: 0;
+}
+.bg-image{
+    margin: 0;
+    width: 680px;
+    height: 150%;
+}
+.Copyright{
+    color: grey;
+    font-size: 12px;
+}
+@media (max-width: 1020px) {
+   .left-side .right-side{
+       width: 100%;
+       background-color: #FFFDEF;
+   }
+   .bg-image{
+       width: 0;
+       background-color: #FFFDEF
+   }
+}   
