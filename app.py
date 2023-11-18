@@ -94,7 +94,30 @@ def feedback():
             return str(res)
         else:
             return str([0, 0, 15, 0])
-        
+
+@app.route('/activate-meter', methods=['GET'])
+def activate_meter():
+    mid = request.args.get('mid')
+    if not Registry.query.get(mid):
+        return '[403]'
+    else:
+        state = States.query.get(mid)
+        if state:
+            state.is_on = True
+            db0.session.commit()
+        return '[200]'
+
+@app.route('/deactivate-meter', methods=['GET'])
+def deactivate_meter():
+    mid = request.args.get('mid')
+    if not Registry.query.get(mid):
+        return '[403]'
+    else:
+        state = States.query.get(mid)
+        if state:
+            state.is_on = False
+            db0.session.commit()
+        return '[200]'
 
 
 if __name__ == '__main__':
