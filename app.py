@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, make_response, render_template, request, redirect, url_for, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 
@@ -48,12 +48,13 @@ def index():
     # Display existing meter data
     records = Records.query.all()
     return render_template('/index.html', meters=records)
-
-@app.route('/create-meter', methods=['GET'])
+    
+@app.route('/api/create-meter/', methods=['POST', 'GET'])
 def create_meter():
     mid = request.args.get('mid')
     if Registry.query.get(mid):
-        return '<p>meter_Id Taken</p>'
+        res = {"error": "mid taken"}
+        return jsonify(res), 403
     else:
         fname = request.args.get('fname')
         lname = request.args.get('lname')
@@ -65,13 +66,14 @@ def create_meter():
         new_state = States(mid=mid, is_active=True, is_on=True, interval=15, balance=1000.0)
         db0.session.add(new_state)
         db0.session.commit()
-        return '<p>success</p>'
+        res = {"success": "meter created"}
+        return jsonify(res), 200
 
-@app.route('/feedback', methods=['GET'])
+@app.route('/api/feedback/', methods=['GET', 'POST'])
 def feedback():
     mid = request.args.get('mid')
     if not Registry.query.get(mid):
-        return str([0, 0, 15, 0])
+        jsonify([0, 0, 15, 0]), 200
     else:
         voltage = request.args.get('vol')
         current = request.args.get('amp')
@@ -91,48 +93,48 @@ def feedback():
         states = States.query.get(mid)
         if states:
             res = [int(states.is_active), int(states.is_on), states.interval, states.balance]
-            return str(res)
+            return jsonify(res), 200
         else:
-            return str([0, 0, 15, 0])
+            return jsonify([0, 0, 15, 0]), 200
 
-@app.route('/activate-meter', methods=['GET'])
+@app.route('/api/activate-meter/', methods=['GET', 'POST'])
 def activate_meter():
     mid = request.args.get('mid')
     if not Registry.query.get(mid):
-        return '[403]'
+        return make_response('', 403)
     else:
         state = States.query.get(mid)
         if state:
             state.is_on = True
             db0.session.commit()
-        return '[200]'
+        return make_response('', 200)
 
-@app.route('/deactivate-meter', methods=['GET'])
+@app.route('/api/deactivate-meter/', methods=['GET', 'POST'])
 def deactivate_meter():
     mid = request.args.get('mid')
     if not Registry.query.get(mid):
-        return '[403]'
+        return make_response('', 403)
     else:
         state = States.query.get(mid)
         if state:
             state.is_on = False
             db0.session.commit()
-        return '[200]'
+        return make_response('', 200)
     
-@app.route('/topup-meter', methods=['GET'])
+@app.route('/api/topup-meter/', methods=['GET', 'POST'])
 def topup_meter():
     mid = request.args.get('mid')
     if not Registry.query.get(mid):
-        return '[403]'
+        return make_response('', 403)
     else:
-        return '[200]'
+        return make_response('', 200)
 
-@app.route('/show-records')
+@app.route('/api/show-records')
 def show_records():
     records = Records.query.all()
     return render_template('/records.html', records=records)
 
-@app.route('/show-registry')
+@app.route('/api/show-registry')
 def show_registry():
     registry = Registry.query.all()
     return render_template('/registry.html', registry=registry)
