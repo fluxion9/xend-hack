@@ -118,7 +118,24 @@ def deactivate_meter():
             state.is_on = False
             db0.session.commit()
         return '[200]'
+    
+@app.route('/topup-meter', methods=['GET'])
+def topup_meter():
+    mid = request.args.get('mid')
+    if not Registry.query.get(mid):
+        return '[403]'
+    else:
+        return '[200]'
 
+@app.route('/show-records')
+def show_records():
+    records = Records.query.all()
+    return render_template('/records.html', records=records)
+
+@app.route('/show-registry')
+def show_registry():
+    registry = Registry.query.all()
+    return render_template('/registry.html', registry=registry)
 
 if __name__ == '__main__':
     app.run(debug=True)

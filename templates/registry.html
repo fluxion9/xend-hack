@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registry Data</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        table {
+            width: 80%;
+            border-collapse: collapse;
+            margin: 20px auto;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <h1>Registry Data</h1>
+    <table>
+        <tr>
+            <th>Meter ID</th>
+            <th>Name</th>
+            <th>Surname</th>
+            <th>Username</th>
+            <th>Address</th>
+            <th>Date Created</th>
+        </tr>
+        {% for entry in registry %}
+            <tr>
+                <td>{{ entry.mid }}</td>
+                <td>{{ entry.name }}</td>
+                <td>{{ entry.surname }}</td>
+                <td>{{ entry.username }}</td>
+                <td>{{ entry.address }}</td>
+                <td>{{ entry.date_created }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

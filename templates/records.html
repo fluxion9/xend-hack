@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meter Data</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        table {
+            width: 80%;
+            border-collapse: collapse;
+            margin: 20px auto;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <h1>Meter Data</h1>
+    <table>
+        <tr>
+            <th>S/N</th>
+            <th>Meter ID</th>
+            <th>Voltage (V)</th>
+            <th>Current (A)</th>
+            <th>Energy (KWh)</th>
+        </tr>
+        {% for record in records %}
+            <tr>
+                <td>{{ record.id }}</td>
+                <td>{{ record.mid }}</td>
+                <td>{{ record.voltage }}</td>
+                <td>{{ record.current }}</td>
+                <td>{{ record.energy }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
