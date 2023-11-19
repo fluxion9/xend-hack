@@ -37,10 +37,10 @@ class States(db0.Model):
     balance = db.Column(db.Float, nullable=False)
 
 class Registry(db1.Model):
-    mid = db1.Column(db.String(255), primary_key=True, nullable=False)
+    mid = db1.Column(db.String(255), nullable=False) 
     name = db1.Column(db.String(255), nullable=False)
     surname = db1.Column(db.String(255), nullable=False)
-    username = db1.Column(db.String(255), nullable=True)
+    username = db1.Column(db.String(255), primary_key=True, unique=True, nullable=False)
     address = db1.Column(db.String(255), nullable=False)
     date_created = db1.Column(db.DateTime, default=datetime.utcnow())
 
@@ -72,15 +72,14 @@ def login():
         print('post request')
         username = request.form['username']
         password = request.form['password']
-        print(username, password)
-        password_hash = generate_password_hash(password, method='sha256')
-        print(username, password_hash)
+        # password_hash = generate_password_hash(password, method='sha256')
+        password_hash = password
         if not Users.query.get(username):
             print('User not found')
             return redirect(url_for('sign_up'))
         else:
             user = Users.query.get(username)
-            if check_password_hash(user.password_hash, password_hash):
+            if user.password_hash == password_hash:
                 session['username'] = username
                 session['email'] = user.email
                 session['name'] = user.firstname
@@ -109,6 +108,17 @@ def userprofile():
         return render_template('/userprofile.html', username=username, email=email, name=name, surname=surname)
     else:
         return redirect(url_for('login', username='guest'))
+    
+@app.route('/dashboard')
+def dashboard():
+    username = session.get('username')
+    email = session.get('email')
+    name = session.get('name')
+    surname = session.get('surname')
+    if username and email and name and surname:
+        return render_template('/dashboard.html', username=username, email=email, name=name, surname=surname)
+    else:
+        return redirect(url_for('login', username='guest'))
 
 @app.route('/sign-up', methods=['POST', 'GET'])
 def sign_up():
@@ -124,9 +134,8 @@ def sign_up():
             print('user exists')
             return redirect(url_for('sign_up'))
         else:
-            print(username, password)
-            password_hash = generate_password_hash(password, method='sha256')
-            print(username, password_hash)
+            # password_hash = generate_password_hash(password, method='sha256')
+            password_hash = password
 
             new_user = Users(username=username, email=email, password_hash=password_hash, firstname=fname, lastname=lname, country=country)
             db2.session.add(new_user)
@@ -139,53 +148,100 @@ def sign_up():
 
             return redirect(url_for('userprofile'))
     return render_template('signup.html')
+
+@app.route('/get-params', methods=['GET'])
+def get_params():
+    username = session.get('username')
+    email = session.get('email')
+    name = session.get('name')
+    surname = session.get('surname')
+    if username and email and name and surname:
+        if request.method == 'GET':
+            usr = request.args.get('usr')
+            if not Registry.query.get(usr):
+                return make_response('', 403)
+            else:
+                registrar = Registry.query.get(usr)
+                mid = registrar.mid
+                address = registrar.address
+                state = States.query.get(mid)
+                if state:
+                    is_active = state.is_active
+                    is_on = state.is_on
+                    balance = state.balance
+                    response = {'mid': mid, 'balance': balance, 'is_active': is_active, 'is_on': is_on, 'address': address}
+                    response = dumps(response)
+                    response = make_response(response, 200)
+                    return response
+                else:
+                    return make_response('', 403)
+        else:
+            return make_response('', 403)
+    else:
+        return make_response(' ', 404)
     
-@app.route('/api/create-meter/', methods=['POST', 'GET'])
-def create_meter():
+@app.route('/api/register-meter/', methods=['POST', 'GET'])
+def register_meter():
     if request.method == 'GET':
-        mid = request.args.get('mid')
+        print('get request')
+        usr = request.args.get('usr')
+        print(usr)
     elif request.method == 'POST':
+        print('post request')
         try:
             json_data = request.get_json()
             if json_data:
-                mid = json_data.get('mid')
+                usr = json_data.get('usr')
             else:
                 return make_response('', 422)
         except Exception:
             return make_response('', 422)
-    if Registry.query.get(mid):
-        response = {"error": "mid taken"}
-        response = dumps(response)
-        response = make_response(response, 403)
-        return response
+    if Users.query.get('usr'):
+        print('user exists')
+        if Registry.query.get(usr):
+            print('user registration exists')
+            mid = request.args.get('mid')
+            resgistrar = Registry.query.get(usr)
+            if resgistrar.mid == mid:
+                print('mid exists')
+                response = {"error": "mid taken"}
+                response = dumps(response)
+                response = make_response(response, 403)
+                return response
+            else:
+                if request.method == 'GET':
+                    fname = request.args.get('fname')
+                    lname = request.args.get('lname')
+                    addr = request.args.get('addr')
+                    mid = request.args.get('mid')
+                elif request.method == 'POST':
+                    try:
+                        json_data = request.get_json()
+                        if json_data:
+                            fname = json_data.get('fname')
+                            lname = json_data.get('lname')
+                            mid = json_data.get('mid')
+                            addr = json_data.get('addr')
+                        else:
+                            return make_response('', 422)
+                    except Exception:
+                        return make_response('', 422)
+                    new_registry = Registry(mid=mid, name=fname, surname=lname, address=addr, username=usr)
+                    db1.session.add(new_registry)
+                    db1.session.commit()
+                    new_state = States(mid=mid, is_active=True, is_on=True, interval=15, balance=1000.0)
+                    db0.session.add(new_state)
+                    db0.session.commit()
+                    print('registry updated')
+                    response = {"success": "meter created"}
+                    response = dumps(response)
+                    response = make_response(response, 200)
+                    return response
+        else:
+            return make_response(' ', 404)
     else:
-        if request.method == 'GET':
-            fname = request.args.get('fname')
-            lname = request.args.get('lname')
-            usrname = request.args.get('usrname')
-            addr = request.args.get('addr')
-        elif request.method == 'POST':
-            try:
-                json_data = request.get_json()
-                if json_data:
-                    fname = json_data.get('fname')
-                    lname = json_data.get('lname')
-                    usrname = json_data.get('usrname')
-                    addr = json_data.get('addr')
-                else:
-                    return make_response('', 422)
-            except Exception:
-                return make_response('', 422)
-        new_registry = Registry(mid=mid, name=fname, surname=lname, address=addr, username=usrname)
-        db1.session.add(new_registry)
-        db1.session.commit()
-        new_state = States(mid=mid, is_active=True, is_on=True, interval=15, balance=1000.0)
-        db0.session.add(new_state)
-        db0.session.commit()
-        response = {"success": "meter created"}
-        response = dumps(response)
-        response = make_response(response, 200)
-        return response
+        print('User not found')
+        return make_response(' ', 404)
 
 @app.route('/api/feedback/', methods=['GET', 'POST'])
 def feedback():
