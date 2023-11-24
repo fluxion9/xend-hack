@@ -26,3 +26,36 @@ function meterState() {
     //   $meterButton.textContent = "METERS OFF";
     //   $meterButton.addEventListener("click", meterState);
 }
+
+
+
+let mid = document.getElementById("mid");
+let stat = document.getElementById("stat");
+let loc = document.getElementById("loc");
+
+
+function getParams() {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        let params = JSON.parse(this.responseText);
+        let id = "", sta = "", location="";
+        for (let i=0; i<params.count; i++) {
+          id += params.mid[i]
+          id += "<br><br>";
+          sta += params.is_active[i] ? "Active" : "Deactivated";
+          sta += "<br><br>";
+          location += params.address[i];
+          location += "<br><br>";
+        }
+        mid.innerHTML = id;
+        loc.innerHTML = location;
+        stat.innerHTML = sta;
+      }
+    };
+    xhttp.open("GET", "/api/get-params", true);
+    xhttp.send();
+  }
+
+getParams();
+setInterval(getParams, 1500);

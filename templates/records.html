@@ -45,6 +45,7 @@
             <th>Voltage (V)</th>
             <th>Current (A)</th>
             <th>Energy (KWh)</th>
+            <th>TimeStamp</th>
         </tr>
         {% for record in records %}
             <tr>
@@ -53,6 +54,7 @@
                 <td>{{ record.voltage }}</td>
                 <td>{{ record.current }}</td>
                 <td>{{ record.energy }}</td>
+                <td>{{ record.time_stamp }}</td>
             </tr>
         {% endfor %}
     </table>

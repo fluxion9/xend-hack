@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
   <head>
     <!-- Required meta tags -->
@@ -17,21 +16,21 @@
     
     <link rel="stylesheet" href="static/vendors/datatables.net-bs4/dataTables.bootstrap4.css">
     <link rel="stylesheet" href="static/vendors/ti-icons/css/themify-icons.css">
-    <link rel="stylesheet" type="text/css" href="static/js/select.dataTables.min.css">
+    <link rel="stylesheet" type="static/text/css" href="js/select.dataTables.min.css">
     <link rel="stylesheet" href="static/vendors/jvectormap/jquery-jvectormap.css">
     <!-- End plugin css for this page -->
     <!-- inject:css -->
     <link rel="stylesheet" href="static/css/style.css">
     <!-- endinject -->
-    <link rel="shortcut icon" href="static/images/Switch.jpg" />
+    <link rel="shortcut icon" href="static/images/icon1.png" />
   </head>
   <body>
     <div class="container-scroller">
       <!-- partial:partials/_navbar.html -->
       <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
         <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-          <a class="navbar-brand brand-logo mr-5" href="index.html"><img src="static/images/Switch.jpg" class="mr-2" alt="logo"/></a>
-          <a class="navbar-brand brand-logo-mini" href="index.html"><img src="static/images/Switch.jpg" alt="logo"/></a>
+          <a class="navbar-brand brand-logo mr-5" href=""><img src="static/images/icon1.png" class="mr-2" alt="logo"/></a>
+          <a class="navbar-brand brand-logo-mini" href=""><img src="static/images/icon1.png" alt="logo"/></a>
         </div>
         <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
           <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -63,7 +62,7 @@
                       <i class="ti-info-alt mx-0"></i>
                     </div>
                   </div>
-                  <div class="preview-item-content">
+                   <div class="preview-item-content">
                     <h6 class="preview-subject font-weight-normal">Application Error</h6>
                     <p class="font-weight-light small-text mb-0 text-muted">
                       Just now
@@ -107,10 +106,10 @@
                   <i class="ti-settings text-primary"></i>
                   User Profile
                 </a>
-                <!-- <a class="dropdown-item" href="livemeter.html">
+                <a class="dropdown-item" href="/livemeters">
                   <i class="ti-light-bulb text-primary"></i>
                   View Live Meters
-                </a> -->
+                </a>
                 <a class="dropdown-item" href="/logout">
                   <i class="ti-power-off text-primary"></i>
                   Logout
@@ -118,7 +117,7 @@
               </div>
             </li>
             <li class="nav-item nav-settings d-none d-lg-flex">
-              <a class="nav-link" href="/user-profile">
+              <a class="nav-link" href="">
                 {{username}}
               </a>
             </li>
@@ -143,12 +142,12 @@
                   User Profile                            
                 </a>
               </li>
-              <!-- <li>
-                <a class="nav-item" href="livemeter.html">
+              <li>
+                <a class="nav-item" href="/livemeters">
                   <i class="ti-light-bulb text-primary"></i>
                   View Live Meters
                 </a>
-              </li> -->
+              </li>
               <li>
                 <a class="nav-item" href="/logout">
                   <i class="ti-power-off text-primary"></i>
@@ -169,17 +168,23 @@
               </a>
             </li>
             <li class="nav-item">
+              <a class="nav-link" href="/register-meter">
+                <i class="icon-grid menu-icon"></i>
+                <span class="menu-title">Add Meter</span>
+              </a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link" href="/payments">
                 <i class="icon-globe menu-icon"></i>
                 <span class="menu-title">Payments</span>
               </a>
             </li>
-            <!-- <li class="nav-item">
-              <a class="nav-link disabled" href="livemeter.html">
+            <li class="nav-item">
+              <a class="nav-link disabled" href="/livemeters">
                 <i class="icon-bar-graph menu-icon"></i>
                 <span class="menu-title">LiveMeters</span>
               </a>
-            </li> -->
+            </li>
             <li class="nav-item">
               <a class="nav-link" href="/user-profile">
                 <i class="icon-head menu-icon"></i>
@@ -246,7 +251,7 @@
                     <div class="card card-light-danger">
                       <div class="card-body">
                         <p class="mb-4 text-white">Customer care line</p>
-                        <p class="fs-30 mb-2 text-white">010435672</p>
+                        <p class="fs-30 mb-2 text-white">+2347039913826</p>
                         <p class="text-white">Available 24/7 a week</p>
                       </div>
                     </div>
@@ -328,17 +333,15 @@
                             <th>Payment status</th>
                           </tr>  
                         </thead>
-                        <!-- {% for transaction in transactions %} -->
-                          <td>
+                          <!-- <td>
                             2500
                           </td>
                           <td>
-                            12-04-2024
+                            19-11-2023
                           </td>
                           <td>
-                            <a  class="btn btn btn-primary btn-rounded btn-fw" href="{{ transaction.confirmation_url}}">Confirm</a>
-                          </td>
-                        <!-- {% endfor %} -->
+                            <a  class="btn btn btn-primary btn-rounded btn-fw" href="">Confirm</a>
+                          </td> -->
                       </table>
                     </div>
                   </div>
@@ -357,20 +360,12 @@
                               <th>Address</th>
                             </tr>  
                           </thead>
-                          <!-- {% for meter in meters %} -->
-                            <td>
-                              2ed12034324fded223
-                              <!-- {{ meter.uuid }} -->
+                            <td id="mid">
                             </td>
-                            <td>
-                              ACTIVE
-                              <!-- {{ meter.is.active }} -->
+                            <td id="stat">
                             </td>
-                            <td>
-                              UNN
-                              <!-- {{ meter.site.address}} -->
+                            <td id="loc">
                             </td>
-                          <!-- {% endfor %} -->
                         </table>
                       </div>
                     </div>
@@ -434,7 +429,7 @@
               </div>
             </div>
           </div>
-          <!-- partial:partials/_footer.html partial -->
+          <!-- partial:partials/_footer.htmlpartial -->
         </div>
         <!-- main-panel ends -->
       </div>
@@ -472,5 +467,6 @@
     <script src="static/js/avgrund.js"></script>
     <!-- meter controls -->
     <script src="static/js/meter.js"></script>
+
   </body>
 </html>

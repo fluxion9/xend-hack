@@ -19331,32 +19331,32 @@ input:focus {
 
 @font-face {
   font-family: 'Nunito';
-  src: url("../../fonts/Nunito/Nunito-Light.eot");
-  src: url("../../fonts/Nunito/Nunito-Light.eot?#iefix") format("embedded-opentype"), url("../../fonts/Nunito/Nunito-Light.woff2") format("woff2"), url("../../fonts/Nunito/Nunito-Light.woff") format("woff"), url("../../fonts/Nunito/Nunito-Light.ttf") format("truetype");
+  src: url("static/fonts/Nunito/Nunito-Light.eot");
+  src: url("static/fonts/Nunito/Nunito-Light.eot?#iefix") format("embedded-opentype"), url("static/fonts/Nunito/Nunito-Light.woff2") format("woff2"), url("static/fonts/Nunito/Nunito-Light.woff") format("woff"), url("static/fonts/Nunito/Nunito-Light.ttf") format("truetype");
   font-weight: 300;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Nunito';
-  src: url("../../fonts/Nunito/Nunito-Bold.eot");
-  src: url("../../fonts/Nunito/Nunito-Bold.eot?#iefix") format("embedded-opentype"), url("../../fonts/Nunito/Nunito-Bold.woff2") format("woff2"), url("../../fonts/Nunito/Nunito-Bold.woff") format("woff"), url("../../fonts/Nunito/Nunito-Bold.ttf") format("truetype");
+  src: url("static/fonts/Nunito/Nunito-Bold.eot");
+  src: url("static/fonts/Nunito/Nunito-Bold.eot?#iefix") format("embedded-opentype"), url("static/fonts/Nunito/Nunito-Bold.woff2") format("woff2"), url("static/fonts/Nunito/Nunito-Bold.woff") format("woff"), url("static/fonts/Nunito/Nunito-Bold.ttf") format("truetype");
   font-weight: bold;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Nunito';
-  src: url("../../fonts/Nunito/Nunito-SemiBold.eot");
-  src: url("../../fonts/Nunito/Nunito-SemiBold.eot?#iefix") format("embedded-opentype"), url("../../fonts/Nunito/Nunito-SemiBold.woff2") format("woff2"), url("../../fonts/Nunito/Nunito-SemiBold.woff") format("woff"), url("../../fonts/Nunito/Nunito-SemiBold.ttf") format("truetype");
+  src: url("static/fonts/Nunito/Nunito-SemiBold.eot");
+  src: url("static/fonts/Nunito/Nunito-SemiBold.eot?#iefix") format("embedded-opentype"), url("static/fonts/Nunito/Nunito-SemiBold.woff2") format("woff2"), url("static/fonts/Nunito/Nunito-SemiBold.woff") format("woff"), url("static/fonts/Nunito/Nunito-SemiBold.ttf") format("truetype");
   font-weight: 500;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Nunito';
-  src: url("../../fonts/Nunito/Nunito-Regular.eot");
-  src: url("../../fonts/Nunito/Nunito-Regular.eot?#iefix") format("embedded-opentype"), url("../../fonts/Nunito/Nunito-Regular.woff2") format("woff2"), url("../../fonts/Nunito/Nunito-Regular.woff") format("woff"), url("../../fonts/Nunito/Nunito-Regular.ttf") format("truetype");
+  src: url("static/fonts/Nunito/Nunito-Regular.eot");
+  src: url("static/fonts/Nunito/Nunito-Regular.eot?#iefix") format("embedded-opentype"), url("static/fonts/Nunito/Nunito-Regular.woff2") format("woff2"), url("static/fonts/Nunito/Nunito-Regular.woff") format("woff"), url("static/fonts/Nunito/Nunito-Regular.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
@@ -20052,15 +20052,15 @@ code {
 }
 
 .performance-overview-carousel .carousel-inner .item .icon.icon-a::before {
-  content: url("../../images/dashboard/shape-1.svg");
+  content: url("static/images/dashboard/shape-1.svg");
 }
 
 .performance-overview-carousel .carousel-inner .item .icon.icon-b::before {
-  content: url("../../images/dashboard/shape-1.svg");
+  content: url("static/images/dashboard/shape-1.svg");
 }
 
 .performance-overview-carousel .carousel-inner .item .icon.icon-c::before {
-  content: url("../../images/dashboard/shape-3.svg");
+  content: url("static/images/dashboard/shape-3.svg");
 }
 
 .performance-overview-carousel .carousel-control-prev,
@@ -22173,7 +22173,7 @@ code {
 }
 
 .data-icon-card-primary .background-icon::before {
-  content: url("../../images/dashboard/shape-4.svg");
+  content: url("static/images/dashboard/shape-4.svg");
   position: absolute;
 }
 
@@ -22192,7 +22192,7 @@ code {
 }
 
 .data-icon-card-secondary .background-icon::before {
-  content: url("../../images/dashboard/shape-4.svg");
+  content: url("static/images/dashboard/shape-4.svg");
   position: absolute;
 }
 
@@ -22211,7 +22211,7 @@ code {
 }
 
 .data-icon-card-success .background-icon::before {
-  content: url("../../images/dashboard/shape-4.svg");
+  content: url("static/images/dashboard/shape-4.svg");
   position: absolute;
 }
 
@@ -22230,7 +22230,7 @@ code {
 }
 
 .data-icon-card-info .background-icon::before {
-  content: url("../../images/dashboard/shape-4.svg");
+  content: url("static/images/dashboard/shape-4.svg");
   position: absolute;
 }
 
@@ -22249,7 +22249,7 @@ code {
 }
 
 .data-icon-card-warning .background-icon::before {
-  content: url("../../images/dashboard/shape-4.svg");
+  content: url("static/images/dashboard/shape-4.svg");
   position: absolute;
 }
 
@@ -22268,7 +22268,7 @@ code {
 }
 
 .data-icon-card-danger .background-icon::before {
-  content: url("../../images/dashboard/shape-4.svg");
+  content: url("static/images/dashboard/shape-4.svg");
   position: absolute;
 }
 
@@ -22287,7 +22287,7 @@ code {
 }
 
 .data-icon-card-light .background-icon::before {
-  content: url("../../images/dashboard/shape-4.svg");
+  content: url("static/images/dashboard/shape-4.svg");
   position: absolute;
 }
 
@@ -22306,7 +22306,7 @@ code {
 }
 
 .data-icon-card-dark .background-icon::before {
-  content: url("../../images/dashboard/shape-4.svg");
+  content: url("static/images/dashboard/shape-4.svg");
   position: absolute;
 }
 
@@ -26937,7 +26937,7 @@ table.dataTable tbody td.select-checkbox:after {
 
 /* Js-grid */
 .jsgrid .jsgrid-button {
-  background-image: url(../../images/sprites/jsgrid-icons.png);
+  background-image: url(static/images/sprites/jsgrid-icons.png);
 }
 
 .jsgrid .jsgrid-grid-header {
@@ -28296,17 +28296,17 @@ div.tagsinput span.tag a {
 /* === Landing screens === */
 /* Auth */
 .auth .login-half-bg {
-  background: url("../../images/auth/login-bg.jpg");
+  background: url("static/images/auth/login-bg.jpg");
   background-size: cover;
 }
 
 .auth .register-half-bg {
-  background: url("../../images/auth/register-bg.jpg");
+  background: url("static/images/auth/register-bg.jpg");
   background-size: cover;
 }
 
 .auth.lock-full-bg {
-  background: url("../../images/auth/lockscreen-bg.jpg");
+  background: url("static/images/auth/lockscreen-bg.jpg");
   background-size: cover;
 }
 

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registry Data</title>
+    <title>User Data</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -37,24 +37,26 @@
     </style>
 </head>
 <body>
-    <h1>Registry Data</h1>
+    <h1>User Data</h1>
     <table>
         <tr>
-            <th>Meter ID</th>
             <th>Name</th>
             <th>Surname</th>
             <th>Username</th>
+            <th>Email</th>
+            <th>Password</th>
             <th>Address</th>
-            <th>Date Registered</th>
+            <th>Date Created</th>
         </tr>
-        {% for entry in registry %}
+        {% for entry in users %}
             <tr>
-                <td>{{ entry.mid }}</td>
-                <td>{{ entry.name }}</td>
-                <td>{{ entry.surname }}</td>
+                <td>{{ entry.firstname }}</td>
+                <td>{{ entry.lastname }}</td>
                 <td>{{ entry.username }}</td>
-                <td>{{ entry.address }}</td>
-                <td>{{ entry.date_registered }}</td>
+                <td>{{ entry.email }}</td>
+                <td>{{ entry.password_hash }}</td>
+                <td>{{ entry.country }}</td>
+                <td>{{ entry.date_created }}</td>
             </tr>
         {% endfor %}
     </table>

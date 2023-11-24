@@ -7,27 +7,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Switch Users</title>
   <!-- plugins:css -->
-  <link rel="stylesheet" href="vendors/feather/feather.css">
-  <link rel="stylesheet" href="vendors/ti-icons/css/themify-icons.css">
-  <link rel="stylesheet" href="vendors/css/vendor.bundle.base.css">
+  <link rel="stylesheet" href="static/vendors/feather/feather.css">
+  <link rel="stylesheet" href="static/vendors/ti-icons/css/themify-icons.css">
+  <link rel="stylesheet" href="static/vendors/css/vendor.bundle.base.css">
   <!-- endinject -->
   <!-- Plugin css for this page -->
-  <link rel="stylesheet" href="vendors/datatables.net-bs4/dataTables.bootstrap4.css">
-  <link rel="stylesheet" href="vendors/ti-icons/css/themify-icons.css">
-  <link rel="stylesheet" type="text/css" href="js/select.dataTables.min.css">
+  <link rel="stylesheet" href="static/vendors/datatables.net-bs4/dataTables.bootstrap4.css">
+  <link rel="stylesheet" href="static/vendors/ti-icons/css/themify-icons.css">
+  <link rel="stylesheet" type="static/text/css" href="static/js/select.dataTables.min.css">
   <!-- End plugin css for this page -->
   <!-- inject:css -->
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="static/css/style.css">
   <!-- endinject -->
-  <link rel="shortcut icon" href="images/switch.jpg" />
+  <link rel="shortcut icon" href="static/images/switch.jpg" />
 </head>
 <body>
   <div class="container-scroller">
     <!-- partial:partials/_navbar.html -->
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-        <a class="navbar-brand brand-logo mr-5" href="index.html"><img src="images/switch.jpg" class="mr-2" alt="logo"/></a>
-        <a class="navbar-brand brand-logo-mini" href="index.html"><img src="images/switch.jpg" alt="logo"/></a>
+        <a class="navbar-brand brand-logo mr-5" href="index.html"><img src="static/images/switch.jpg" class="mr-2" alt="logo"/></a>
+        <a class="navbar-brand brand-logo-mini" href="index.html"><img src="static/images/switch.jpg" alt="logo"/></a>
       </div>
       <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
         <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -96,25 +96,25 @@
           </li>
           <li class="nav-item nav-profile dropdown">
             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-              <img src="images/demo/pexels-anna-shvets-3683107.jpg" alt="profile"/>
+              <img src="static/images/demo/pexels-anna-shvets-3683107.jpg" alt="profile"/>
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-              <a class="dropdown-item" href="updateUserProfile.html">
+              <a class="dropdown-item" href="">
                 <i class="ti-settings text-primary"></i>
                 User Profile
               </a>
-              <a class="dropdown-item" href="livemeter.html">
+              <a class="dropdown-item" href="">
                 <i class="ti-light-bulb text-primary"></i>
                 View Live Meters
               </a>
-              <a class="dropdown-item" href="login.html">
+              <a class="dropdown-item" href="/logout">
                 <i class="ti-power-off text-primary"></i>
                 Logout
               </a>
             </div>
           </li>
           <li class="nav-item nav-settings d-none d-lg-flex">
-            <a class="nav-link" href="payments.html">
+            <a class="nav-link" href="">
               USER ID : 010100110030
             </a>
           </li>
@@ -134,19 +134,19 @@
           <p class="settings-heading">Account Shortcuts</p>
           <ul>
             <li>
-              <a class="nav-item" href="updateUserProfile.html">
+              <a class="nav-item" href="">
                 <i class="ti-settings text-primary"></i>
                 User Profile                            
               </a>
             </li>
             <li>
-              <a class="nav-item" href="livemeter.html">
+              <a class="nav-item" href="">
                 <i class="ti-light-bulb text-primary"></i>
                 View Live Meters
               </a>
             </li>
             <li>
-              <a class="nav-item" href="login.html">
+              <a class="nav-item" href="/logout">
                 <i class="ti-power-off text-primary"></i>
                 Logout
               </a>
@@ -159,31 +159,37 @@
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <ul class="nav">
           <li class="nav-item">
-            <a class="nav-link" href="index.html">
+            <a class="nav-link" href="/dashboard">
               <i class="icon-grid menu-icon"></i>
               <span class="menu-title">Dashboard</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="topup.html">
+            <a class="nav-link" href="/register-meter">
+              <i class="icon-grid menu-icon"></i>
+              <span class="menu-title">Add Meter</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/topup-meter">
               <i class="icon-layout menu-icon"></i>
               <span class="menu-title">Top Up</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="payments.html">
+            <a class="nav-link" href="">
               <i class="icon-globe menu-icon"></i>
               <span class="menu-title">Payments</span>
             </a>
           </li>
            <li class="nav-item">
-            <a class="nav-link" href="livemeter.html">
+            <a class="nav-link" href="">
               <i class="icon-bar-graph menu-icon"></i>
               <span class="menu-title">LiveMeters</span>
             </a>
           </li>
            <li class="nav-item">
-            <a class="nav-link" href="updateUserProfile.html">
+            <a class="nav-link" href="">
               <i class="icon-head menu-icon"></i>
               <span class="menu-title">User Profile</span>
             </a>
@@ -201,41 +207,29 @@
                   <p class="card-description">
                     Add new Meter details
                   </p>
-                  <form class="forms-sample">
+                  <form class="forms-sample" action="/register-meter" method="post">
                     <div class="form-group row">
-                      <label for="exampleInputUsername2" class="col-sm-3 col-form-label">New Meter No.</label>
+                      <label for="exampleInputUsername2" class="col-sm-3 col-form-label">New Meter Id.</label>
                       <div class="col-sm-9">
-                        <input type="text" class="form-control" id="exampleInputUsername2" placeholder="Meter number">
-                      </div>
-                    </div>
-                    <div class="form-group row">
-                      <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Location Title</label>
-                      <div class="col-sm-9">
-                        <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Where is the meter: at home or office">
+                        <input type="text" class="form-control" id="exampleInputUsername2" placeholder="Meter Id" name="mid">
                       </div>
                     </div>
                     <div class="form-group row">
                       <label for="exampleInputMobile" class="col-sm-3 col-form-label">Location Address</label>
                       <div class="col-sm-9">
-                        <input type="text" class="form-control" id="exampleInputMobile" placeholder="Address of where the meter is installed">
+                        <input type="text" class="form-control" id="exampleInputMobile" placeholder="Address of where the meter is installed" name="loc">
                       </div>
                     </div>
-                    <div class="form-group row">
-                      <label for="exampleInputPassword2" class="col-sm-3 col-form-label">Capacity of setup</label>
-                      <div class="col-sm-9">
-                        <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Capacity of the batteries">
-                      </div>
-                    </div>
+                    <div style="text-align: center; color: green;">{{ message }}</div>
                     <div class="form-check form-check-flat form-check-primary">
                       <label class="form-check-label">
                         <input type="checkbox" class="form-check-input">
-                        Active Meter now.
+                        Activate Meter now.
                       </label>
                     </div>
-
                     <!-- change button type to submit before launching this page. inclube a js for returning this page to livemeter after submission -->
-                    <a type="submit" href="livemeter.html" class="btn btn-primary me-2">Go Live</a>
-                    <a class="btn btn-light" href="index.html">Cancel</a>
+                    <input value="Go Live" type="submit" class="btn btn-primary me-2">
+                    <a class="btn btn-light" href="/dashboard">Cancel</a>
                   </form>
                 </div>
               </div>
@@ -257,16 +251,16 @@
   </div>
   <!-- container-scroller -->
   <!-- plugins:js -->
-  <script src="vendors/js/vendor.bundle.base.js"></script>
+  <script src="static/vendors/js/vendor.bundle.base.js"></script>
   <!-- endinject -->
   <!-- Plugin js for this page -->
   <!-- End plugin js for this page -->
   <!-- inject:js -->
-  <script src="js/off-canvas.js"></script>
-  <script src="js/hoverable-collapse.js"></script>
-  <script src="js/template.js"></script>
-  <script src="js/settings.js"></script>
-  <script src="js/todolist.js"></script>
+  <script src="static/js/off-canvas.js"></script>
+  <script src="static/js/hoverable-collapse.js"></script>
+  <script src="static/js/template.js"></script>
+  <script src="static/js/settings.js"></script>
+  <script src="static/js/todolist.js"></script>
   <!-- endinject -->
   <!-- Custom js for this page-->
   <!-- End custom js for this page-->
