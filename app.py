@@ -10,17 +10,8 @@ app = Flask(__name__, template_folder='templates')
 
 app.config['SECRET_KEY'] = 'temporal_secret_key'
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///Records.db'  # Use SQLite for simplicity
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
 db = SQLAlchemy(app)
-
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///States.db'
-db0 = SQLAlchemy(app)
-
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///Registry.db'
-db1 = SQLAlchemy(app)
-
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///Users.db'
-db2 = SQLAlchemy(app)
 
 class Records(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
@@ -30,38 +21,35 @@ class Records(db.Model):
     energy = db.Column(db.Float, nullable=False)
     time_stamp = db.Column(db.DateTime, default=datetime.utcnow())
 
-class States(db0.Model):
+class States(db.Model):
     mid = db.Column(db.String(255), primary_key=True, nullable=False)
-    is_on = db0.Column(db.Boolean, nullable=False)
-    is_active = db0.Column(db.Boolean, nullable=False)
+    is_on = db.Column(db.Boolean, nullable=False)
+    is_active = db.Column(db.Boolean, nullable=False)
     interval = db.Column(db.Integer, nullable=False)
     balance = db.Column(db.Float, nullable=False)
 
-class Registry(db1.Model):
+class Registry(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    mid = db1.Column(db.String(255), nullable=False, unique=True) 
-    name = db1.Column(db.String(255), nullable=False)
-    surname = db1.Column(db.String(255), nullable=False)
-    username = db1.Column(db.String(255), nullable=False)
-    address = db1.Column(db.String(255), nullable=False)
-    date_registered = db1.Column(db.DateTime, default=datetime.utcnow())
+    mid = db.Column(db.String(255), nullable=False, unique=True) 
+    name = db.Column(db.String(255), nullable=False)
+    surname = db.Column(db.String(255), nullable=False)
+    username = db.Column(db.String(255), nullable=False)
+    address = db.Column(db.String(255), nullable=False)
+    date_registered = db.Column(db.DateTime, default=datetime.utcnow())
 
-class Users(db2.Model):
-    id = db2.Column(db.Integer, autoincrement=True)
-    username = db2.Column(db.String(50), primary_key=True, unique=True, nullable=False)
-    firstname = db2.Column(db.String(50), nullable=False)
-    lastname = db2.Column(db.String(50), nullable=False)
-    email = db2.Column(db.String(120), unique=True, nullable=False)
-    password_hash = db2.Column(db.String(128), nullable=False)
-    country = db2.Column(db.String(50), nullable=False)
-    date_created = db2.Column(db.DateTime, default=datetime.utcnow())
+class Users(db.Model):
+    id = db.Column(db.Integer, autoincrement=True)
+    username = db.Column(db.String(50), primary_key=True, unique=True, nullable=False)
+    firstname = db.Column(db.String(50), nullable=False)
+    lastname = db.Column(db.String(50), nullable=False)
+    email = db.Column(db.String(120), unique=True, nullable=False)
+    password_hash = db.Column(db.String(128), nullable=False)
+    country = db.Column(db.String(50), nullable=False)
+    date_created = db.Column(db.DateTime, default=datetime.utcnow())
 
 # Create the database tables within the application context
 with app.app_context():
     db.create_all()
-    db0.create_all()
-    db1.create_all()
-    db2.create_all()
 
 
 @app.route('/')
@@ -159,8 +147,8 @@ def sign_up():
             # password_hash = generate_password_hash(password, method='sha256')
             password_hash = password
             new_user = Users(username=username, email=email, password_hash=password_hash, firstname=fname, lastname=lname, country=country)
-            db2.session.add(new_user)
-            db2.session.commit()
+            db.session.add(new_user)
+            db.session.commit()
 
             session['username'] = new_user.username
             session['email'] = new_user.email
@@ -223,11 +211,11 @@ def register():
                 return redirect(url_for('register', message=response))
             else:
                 new_registry = Registry(mid=mid, name=name, surname=surname, address=addr, username=username)
-                db1.session.add(new_registry)
-                db1.session.commit()
+                db.session.add(new_registry)
+                db.session.commit()
                 new_state = States(mid=mid, is_active=True, is_on=True, interval=15, balance=1000.0)
-                db0.session.add(new_state)
-                db0.session.commit()
+                db.session.add(new_state)
+                db.session.commit()
                 response = {"success": "meter created"}
                 response = dumps(response)
                 return redirect(url_for('register', message=response))
@@ -282,11 +270,11 @@ def register_meter():
                 except Exception:
                     return make_response('', 422)
             new_registry = Registry(mid=mid, name=fname, surname=lname, address=addr, username=usr)
-            db1.session.add(new_registry)
-            db1.session.commit()
+            db.session.add(new_registry)
+            db.session.commit()
             new_state = States(mid=mid, is_active=True, is_on=True, interval=15, balance=1000.0)
-            db0.session.add(new_state)
-            db0.session.commit()
+            db.session.add(new_state)
+            db.session.commit()
             response = {"success": "meter created"}
             response = dumps(response)
             response = make_response(response, 200)
@@ -337,7 +325,7 @@ def feedback():
             if state.balance <= 0.0:
                 state.balance = 0.0
                 state.is_on = False
-            db0.session.commit()
+            db.session.commit()
         else:
             return str([0, 0, 15, 0])
         states = States.query.get(mid)
@@ -366,7 +354,7 @@ def activate_meter():
         state = States.query.get(mid)
         if state:
             state.is_on = True
-            db0.session.commit()
+            db.session.commit()
         return make_response('', 200)
 
 @app.route('/api/deactivate-meter/', methods=['GET', 'POST'])
@@ -388,7 +376,7 @@ def deactivate_meter():
         state = States.query.get(mid)
         if state:
             state.is_on = False
-            db0.session.commit()
+            db.session.commit()
         return make_response('', 200)
     
 @app.route('/api/topup-meter/', methods=['GET', 'POST'])
