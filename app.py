@@ -26,7 +26,6 @@ class States(db.Model):
     is_on = db.Column(db.Boolean, nullable=False)
     is_active = db.Column(db.Boolean, nullable=False)
     interval = db.Column(db.Integer, nullable=False)
-    balance = db.Column(db.Float, nullable=False)
 
 class Registry(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
@@ -46,6 +45,12 @@ class Users(db.Model):
     password_hash = db.Column(db.String(128), nullable=False)
     country = db.Column(db.String(50), nullable=False)
     date_created = db.Column(db.DateTime, default=datetime.utcnow())
+
+class Shared(db.Model):
+    id = db.Column(db.Integer, autoincrement=True)
+    username = db.Column(db.String(50), primary_key=True, unique=True, nullable=False)
+    balance = db.Column(db.Float, nullable=False)
+    tariff = db.Column(db.Float, nullable=False)
 
 # Create the database tables within the application context
 with app.app_context():
@@ -149,12 +154,10 @@ def sign_up():
             new_user = Users(username=username, email=email, password_hash=password_hash, firstname=fname, lastname=lname, country=country)
             db.session.add(new_user)
             db.session.commit()
-
             session['username'] = new_user.username
             session['email'] = new_user.email
             session['name'] = new_user.firstname
             session['surname'] = new_user.lastname
-
             return redirect(url_for('userprofile'))
     return render_template('signup.html')
 
@@ -169,10 +172,10 @@ def get_params():
             if not Registry.query.filter_by(username=username).first():
                 return make_response('', 403)
             else:
+                balance = Shared.query.get(username).balance
                 registrar = Registry.query.filter_by(username=username).all()
                 cnt = len(registrar)
                 mids = list()
-                balance = list()
                 is_active = list()
                 is_on = list()
                 address = list()
@@ -181,7 +184,6 @@ def get_params():
                     address.append(element.address)
                 for mid in mids:
                     state = States.query.get(mid)
-                    balance.append(state.balance)
                     is_active.append(state.is_active)
                     is_on.append(state.is_on)
                 response = {'count': cnt, 'mid': mids, 'balance': balance, 'is_active': is_active, 'is_on': is_on, 'address': address}
@@ -213,9 +215,13 @@ def register():
                 new_registry = Registry(mid=mid, name=name, surname=surname, address=addr, username=username)
                 db.session.add(new_registry)
                 db.session.commit()
-                new_state = States(mid=mid, is_active=True, is_on=True, interval=15, balance=1000.0)
+                new_state = States(mid=mid, is_active=True, is_on=True, interval=15)
                 db.session.add(new_state)
                 db.session.commit()
+                if not Shared.query.get(username):
+                    new_data = Shared(username=username, balance=1000.0, tariff=Tariff)
+                    db.session.add(new_data)
+                    db.session.commit()
                 response = {"success": "meter created"}
                 response = dumps(response)
                 return redirect(url_for('register', message=response))
@@ -272,9 +278,13 @@ def register_meter():
             new_registry = Registry(mid=mid, name=fname, surname=lname, address=addr, username=usr)
             db.session.add(new_registry)
             db.session.commit()
-            new_state = States(mid=mid, is_active=True, is_on=True, interval=15, balance=1000.0)
+            new_state = States(mid=mid, is_active=True, is_on=True, interval=15)
             db.session.add(new_state)
             db.session.commit()
+            if not Shared.query.get(usr):
+                    new_data = Shared(username=usr, balance=1000.0, tariff=Tariff)
+                    db.session.add(new_data)
+                    db.session.commit()
             response = {"success": "meter created"}
             response = dumps(response)
             response = make_response(response, 200)
@@ -319,18 +329,22 @@ def feedback():
         new_records = Records(mid=mid, voltage=voltage, current=current, energy=energy)
         db.session.add(new_records)
         db.session.commit()
-        state = States.query.get(mid)
-        if state:
-            state.balance -= (float(energy) * Tariff)
-            if state.balance <= 0.0:
-                state.balance = 0.0
-                state.is_on = False
+        states = States.query.get(mid)
+        reg = Registry.query.filter_by(mid=mid).first()
+        username = reg.username
+        share = Shared.query.get(username)
+        if share and states:
+            share.balance -= (float(energy) * share.tariff)
+            if share.balance <= 0.0:
+                share.balance = 0.0
+                states.is_on = False
             db.session.commit()
         else:
             return str([0, 0, 15, 0])
         states = States.query.get(mid)
-        if states:
-            res = [int(states.is_active), int(states.is_on), states.interval, round(states.balance, 2)]
+        share = Shared.query.get(username)
+        if states and share:
+            res = [int(states.is_active), int(states.is_on), states.interval, round(share.balance, 2)]
             return dumps(res), 200
         else:
             return dumps([0, 0, 15, 0]), 200

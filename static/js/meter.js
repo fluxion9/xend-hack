@@ -32,6 +32,7 @@ function meterState() {
 let mid = document.getElementById("mid");
 let stat = document.getElementById("stat");
 let loc = document.getElementById("loc");
+let bal = document.getElementById("bal");
 
 
 function getParams() {
@@ -51,6 +52,7 @@ function getParams() {
         mid.innerHTML = id;
         loc.innerHTML = location;
         stat.innerHTML = sta;
+        bal.innerHTML = params.balance;
       }
     };
     xhttp.open("GET", "/api/get-params", true);
